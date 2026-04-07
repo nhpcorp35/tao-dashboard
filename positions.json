@@ -1,0 +1,49 @@
+{
+  "holdings": {
+    "tao_total": 8.2,
+    "tao_deployed": 6.04,
+    "tao_liquid": 2.16,
+    "usd_value_staked": 1932.05,
+    "usd_value_liquid": 690.14,
+    "total_usd": 2622.19
+  },
+  "deployments": [
+    {
+      "subnet": 64,
+      "name": "Chutes",
+      "alpha_staked": 0,
+      "usd_value": 425.10,
+      "date": "2026-04-06"
+    },
+    {
+      "subnet": 0,
+      "name": "Root",
+      "alpha_staked": 0,
+      "usd_value": 423.15,
+      "date": "2026-04-06"
+    },
+    {
+      "subnet": 4,
+      "name": "Targon",
+      "alpha_staked": 0,
+      "usd_value": 389.97,
+      "date": "2026-04-06"
+    },
+    {
+      "subnet": 3,
+      "name": "τemplar",
+      "alpha_staked": 0,
+      "usd_value": 356.91,
+      "date": "2026-04-06"
+    },
+    {
+      "subnet": 62,
+      "name": "Ridges",
+      "alpha_staked": 0,
+      "usd_value": 336.91,
+      "date": "2026-04-06"
+    }
+  ],
+  "last_updated": "2026-04-06T19:20:00Z",
+  "tao_price_snapshot": 319.75
+}
