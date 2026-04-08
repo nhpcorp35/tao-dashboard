@@ -158,7 +158,9 @@ def main():
         daily_pnl_usd = None
         daily_pnl_pct = price_data['chg_24h']
 
-    unrealized_pnl = today_total_usd - today_total_cost
+    unrealized_pnl     = today_total_usd - today_total_cost
+    ytd_pnl_usd        = unrealized_pnl
+    ytd_pnl_pct        = ((today_total_usd / today_total_cost) - 1) * 100 if today_total_cost > 0 else 0
 
     # 4. Save today's snapshot
     save_snapshot({
@@ -201,6 +203,9 @@ PORTFOLIO SNAPSHOT
 
 DAILY P&L
   {pnl_line}
+
+YTD P&L (since first stake 2026-03-06)
+  {'+' if ytd_pnl_usd >= 0 else ''}${ytd_pnl_usd:,.2f}  ({'+' if ytd_pnl_pct >= 0 else ''}{ytd_pnl_pct:.2f}%)
 
 {'━'*56}
 
