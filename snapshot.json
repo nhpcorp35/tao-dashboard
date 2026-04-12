@@ -1,7 +1,10 @@
 {
   "date": "2026-04-12",
-  "tao": 264.111906226859,
-  "total_tao_staked": 12.965446239000002,
-  "total_usd_value": 3424.3287212641503,
-  "total_cost_usd": 3845.4100000000003
+  "tao": 258.613547771186,
+  "total_tao": 0,
+  "total_usd": 0.0,
+  "total_cost": 0,
+  "unrealized": 0.0,
+  "ytd_pct": 0,
+  "positions": []
 }
