@@ -19,9 +19,9 @@ SNAPSHOT_FILE = os.path.join(os.path.dirname(__file__), 'snapshot.json')
 BASE          = 'https://api.taostats.io/api'
 HEADERS       = {'Authorization': TAOSTATS_KEY} if TAOSTATS_KEY else {}
 
-# Cache for 10 min (was 5) — we only get 5 req/min, be stingy
+# Cache for 1 hour — Taostats is flaky + strict 5 req/min limit
 _cache = {'data': None, 'ts': 0}
-CACHE_TTL = 600
+CACHE_TTL = 3600
 
 # Track API calls to stay under 5/min
 _rate = {'calls': [], 'MAX': 4}  # leave 1 call headroom
