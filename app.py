@@ -2,45 +2,90 @@
 """
 TAO Portfolio Dashboard — Flask app
 Pulls live on-chain data via Taostats API
+Rate limit: 5 requests/min — be very conservative
 """
 
 from flask import Flask, render_template, jsonify
-import json, os, time, requests
+import json, os, time, requests, logging
 from datetime import datetime
 
 app = Flask(__name__)
+logging.basicConfig(level=logging.INFO)
+log = logging.getLogger('tao-dash')
 
 COLDKEY       = '5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb'
-TAOSTATS_KEY  = os.environ.get('TAOSTATS_API_KEY', 'tao-3ab43b1a-25ef-4d3f-a677-03523704008a:7ec8aee8')
+TAOSTATS_KEY  = os.environ.get('TAOSTATS_API_KEY', '')
 SNAPSHOT_FILE = os.path.join(os.path.dirname(__file__), 'snapshot.json')
 BASE          = 'https://api.taostats.io/api'
-HEADERS       = {'Authorization': TAOSTATS_KEY}
+HEADERS       = {'Authorization': TAOSTATS_KEY} if TAOSTATS_KEY else {}
 
+# Cache for 10 min (was 5) — we only get 5 req/min, be stingy
 _cache = {'data': None, 'ts': 0}
-CACHE_TTL = 300  # 5 min
+CACHE_TTL = 600
 
-def api(endpoint, params=None, retries=3):
+# Track API calls to stay under 5/min
+_rate = {'calls': [], 'MAX': 4}  # leave 1 call headroom
+
+
+def _rate_ok():
+    """Check if we can make an API call without exceeding 4/min."""
+    now = time.time()
+    _rate['calls'] = [t for t in _rate['calls'] if now - t < 60]
+    return len(_rate['calls']) < _rate['MAX']
+
+
+def _rate_record():
+    _rate['calls'].append(time.time())
+
+
+def api(endpoint, params=None):
+    """Single-try API call with rate limit awareness."""
+    if not TAOSTATS_KEY:
+        log.error("TAOSTATS_API_KEY not set!")
+        return None
+
+    if not _rate_ok():
+        wait = 60 - (time.time() - _rate['calls'][0])
+        log.warning(f"Rate limit: waiting {wait:.0f}s before {endpoint}")
+        time.sleep(max(wait, 1))
+
     url = f"{BASE}/{endpoint}"
-    for i in range(retries):
+    try:
+        _rate_record()
+        r = requests.get(url, headers=HEADERS, params=params, timeout=15)
+        if r.status_code == 429:
+            retry_after = int(r.headers.get('Retry-After', 60))
+            log.warning(f"429 from {endpoint}, backing off {retry_after}s")
+            time.sleep(retry_after)
+            # One retry
+            _rate_record()
+            r = requests.get(url, headers=HEADERS, params=params, timeout=15)
+        r.raise_for_status()
+        return r.json()
+    except Exception as e:
+        log.error(f"API error {endpoint}: {e}")
+        return None
+
+
+def _load_snapshot():
+    """Load last-known-good snapshot for fallback."""
+    if os.path.exists(SNAPSHOT_FILE):
         try:
-            r = requests.get(url, headers=HEADERS, params=params, timeout=10)
-            if r.status_code == 429:
-                time.sleep(5 * (i + 1))
-                continue
-            r.raise_for_status()
-            return r.json()
-        except Exception as e:
-            if i == retries - 1:
-                return None
-            time.sleep(3)
+            with open(SNAPSHOT_FILE) as f:
+                return json.load(f)
+        except:
+            pass
     return None
+
 
 def fetch_portfolio():
     now = time.time()
     if _cache['data'] and (now - _cache['ts']) < CACHE_TTL:
         return _cache['data']
 
-    # TAO price
+    api_failed = False
+
+    # TAO price — 1 API call
     price_data = api('price/latest/v1', {'asset': 'tao'})
     tao = 0.0
     chg_24h = chg_7d = chg_30d = 0.0
@@ -50,12 +95,49 @@ def fetch_portfolio():
         chg_24h = float(p.get('percent_change_24h', 0))
         chg_7d  = float(p.get('percent_change_7d', 0))
         chg_30d = float(p.get('percent_change_30d', 0))
+    else:
+        api_failed = True
 
-    # Delegation history
+    # Small delay between calls to be respectful
+    time.sleep(2)
+
+    # Delegation history — 1 API call
     del_data = api('delegation/v1', {'nominator': COLDKEY, 'limit': 100})
     txns = del_data['data'] if del_data and del_data.get('data') else []
 
-    # Build positions
+    if not txns:
+        api_failed = True
+
+    # If API failed, fall back to snapshot
+    if api_failed:
+        snap = _load_snapshot()
+        if snap and _cache['data']:
+            # Return stale cache with warning
+            log.warning("API failed, returning stale cache")
+            _cache['data']['stale'] = True
+            _cache['data']['error'] = 'API unavailable — showing cached data'
+            return _cache['data']
+        elif snap:
+            # Build minimal result from snapshot
+            log.warning("API failed, no cache — using snapshot fallback")
+            return {
+                'tao':         snap.get('tao', 0),
+                'chg_24h':     0, 'chg_7d': 0, 'chg_30d': 0,
+                'total_tao':   snap.get('total_tao_staked', 0),
+                'total_usd':   snap.get('total_usd_value', 0),
+                'total_cost':  snap.get('total_cost_usd', 0),
+                'unrealized':  snap.get('total_usd_value', 0) - snap.get('total_cost_usd', 0),
+                'ytd_pct':     0,
+                'daily_usd':   None,
+                'daily_pct':   0,
+                'positions':   [],
+                'updated':     f"{snap.get('date', '?')} (snapshot — API unavailable)",
+                'coldkey':     COLDKEY[:12] + '...' + COLDKEY[-6:],
+                'stale':       True,
+                'error':       'API unavailable — showing last snapshot data',
+            }
+
+    # Build positions from delegation history
     positions = {}
     for tx in sorted(txns, key=lambda x: x['timestamp']):
         key  = (tx['netuid'], tx['delegate']['ss58'])
@@ -95,10 +177,9 @@ def fetch_portfolio():
 
     # Daily P&L from snapshot
     daily_usd = daily_pct = None
-    if os.path.exists(SNAPSHOT_FILE):
+    snap = _load_snapshot()
+    if snap:
         try:
-            with open(SNAPSHOT_FILE) as f:
-                snap = json.load(f)
             if snap.get('date') != datetime.utcnow().strftime('%Y-%m-%d'):
                 prev_val  = snap.get('total_tao_staked', total_tao) * snap.get('tao', tao)
                 daily_usd = total_usd - prev_val
@@ -130,10 +211,13 @@ def fetch_portfolio():
         'positions':   active,
         'updated':     datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC'),
         'coldkey':     COLDKEY[:12] + '...' + COLDKEY[-6:],
+        'stale':       False,
+        'error':       None,
     }
     _cache['data'] = result
     _cache['ts']   = now
     return result
+
 
 @app.route('/')
 def dashboard():
@@ -149,6 +233,19 @@ def api_refresh():
     _cache['ts'] = 0
     return jsonify({'ok': True})
 
+@app.route('/api/health')
+def api_health():
+    """Quick health check — tests API connectivity without burning rate limit."""
+    return jsonify({
+        'api_key_set': bool(TAOSTATS_KEY),
+        'cache_age_s': int(time.time() - _cache['ts']) if _cache['data'] else None,
+        'cache_ttl':   CACHE_TTL,
+        'rate_calls_last_min': len([t for t in _rate['calls'] if time.time() - t < 60]),
+        'has_data':    _cache['data'] is not None,
+        'stale':       _cache['data'].get('stale', False) if _cache['data'] else None,
+    })
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5555))
     app.run(host='0.0.0.0', port=port, debug=False)
+

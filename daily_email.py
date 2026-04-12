@@ -26,6 +26,26 @@ SNAPSHOT_FILE = os.path.join(os.path.dirname(__file__), 'snapshot.json')
 HEADERS = {'Authorization': TAOSTATS_KEY}
 BASE    = 'https://api.taostats.io/api'
 
+# ── Subnet Name Cache ─────────────────────────────────────────────────────────
+import re
+
+_subnet_names: dict[int, str] = {}
+
+def get_subnet_name(netuid: int) -> str:
+    """Fetch subnet name from taostats page title. Caches per run."""
+    if netuid in _subnet_names:
+        return _subnet_names[netuid]
+    try:
+        r = requests.get(f"https://taostats.io/subnets/{netuid}", timeout=8)
+        # Parse name from <title>... · SN3 · τemplar · taostats ...</title>
+        match = re.search(r'<title>[^<]*·\s*SN\d+\s*·\s*([^·<]+?)·', r.text)
+        name = match.group(1).strip() if match else ''
+        _subnet_names[netuid] = name
+        return name
+    except Exception:
+        _subnet_names[netuid] = ''
+        return ''
+
 # ── Helpers ───────────────────────────────────────────────────────────────────
 def api(endpoint, params=None, retries=3, delay=5):
     url = f"{BASE}/{endpoint}"
@@ -219,11 +239,21 @@ ACTIVE POSITIONS
         pos_pnl     = current_val - p['cost_usd']
         pos_pnl_pct = ((current_val / p['cost_usd']) - 1) * 100 if p['cost_usd'] > 0 else 0
         sign = '+' if pos_pnl >= 0 else ''
+        
+        # YTD P&L (same as overall, since all positions opened in 2026)
+        ytd_pos_pnl = pos_pnl
+        ytd_pos_pct = pos_pnl_pct
+        ytd_sign = '+' if ytd_pos_pnl >= 0 else ''
+        
+        sn_name = get_subnet_name(int(p['netuid']))
+        sn_label = f"SN{p['netuid']} {sn_name}" if sn_name else f"SN{p['netuid']}"
+        
         body += f"""
-  SN{p['netuid']} — {p['validator']}
+  {sn_label} — {p['validator']}
     Staked:   {p['tao_staked']:.4f} TAO  (${current_val:,.2f})
     Cost:     ${p['cost_usd']:,.2f}
     P&L:      {sign}${pos_pnl:,.2f} ({sign}{pos_pnl_pct:.1f}%)
+    YTD P&L:  {ytd_sign}${ytd_pos_pnl:,.2f} ({ytd_sign}{ytd_pos_pct:.1f}%)
     Since:    {p['first_stake']}
 """
 

@@ -220,6 +220,13 @@
 <body>
 <div class="container">
 
+  <!-- Error banner -->
+  {% if d.stale or d.error %}
+  <div style="background:rgba(248,113,113,0.1); border:1px solid var(--red); border-radius:8px; padding:12px 18px; margin-bottom:18px; font-size:13px; color:var(--red);">
+    ⚠️ {{ d.error or 'Showing cached/snapshot data — live API unavailable' }}
+  </div>
+  {% endif %}
+
   <!-- Header -->
   <div class="header">
     <div class="header-left">
@@ -339,7 +346,7 @@
 
   <div class="footer">
     Data via <a href="https://taostats.io" target="_blank">taostats.io</a> &nbsp;·&nbsp;
-    Cached 5 min &nbsp;·&nbsp;
+    Cached 10 min &nbsp;·&nbsp;
     <a href="/api/data" target="_blank">JSON API</a>
   </div>
 
