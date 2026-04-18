@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
 TAO Portfolio Dashboard — Flask app
+# Luke test 2026-04-12: OpenClaw edits here → git push → your git pull ~/tao-dashboard/app.py
 Pulls live on-chain data via Taostats API
 Rate limit: 5 requests/min — be very conservative
 """
