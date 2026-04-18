@@ -5,6 +5,7 @@ import csv
 import json
 import smtplib
 import traceback
+from collections import defaultdict
 from datetime import datetime
 from email.mime.text import MIMEText
 
@@ -55,6 +56,83 @@ def fmt_usd(x):
     return f"${x:,.2f}"
 
 
+def extract_amount(x):
+    if x is None:
+        return None
+
+    try:
+        if hasattr(x, "tao"):
+            return float(x.tao)
+    except Exception:
+        pass
+
+    try:
+        if hasattr(x, "item"):
+            v = x.item()
+            if hasattr(v, "tao"):
+                return float(v.tao)
+            return float(v)
+    except Exception:
+        pass
+
+    try:
+        return float(x)
+    except Exception:
+        pass
+
+    try:
+        vals = []
+        for v in x:
+            if hasattr(v, "tao"):
+                vals.append(float(v.tao))
+            elif hasattr(v, "item"):
+                iv = v.item()
+                if hasattr(iv, "tao"):
+                    vals.append(float(iv.tao))
+                else:
+                    vals.append(float(iv))
+            else:
+                vals.append(float(v))
+        return float(sum(vals))
+    except Exception:
+        return None
+
+
+def first_nonzero_attr(obj, names):
+    for name in names:
+        if hasattr(obj, name):
+            val = getattr(obj, name)
+            num = extract_amount(val)
+            if num is not None and abs(num) > 0:
+                return num, name
+    return None, None
+
+
+def normalize_tao_amount(x):
+    """
+    TaoStats amount fields are in raw 1e9 units in this payload.
+    """
+    v = safe_float(x, 0.0)
+    if v <= 0:
+        return 0.0
+    if v > 1_000_000:
+        return v / 1e9
+    return v
+
+
+def normalize_usd_amount(x):
+    return safe_float(x, 0.0)
+
+
+def event_sort_key(d):
+    return (
+        d.get("timestamp", ""),
+        d.get("block_number", 0),
+        d.get("extrinsic_id", ""),
+        d.get("id", ""),
+    )
+
+
 # =========================
 # TAO PRICE
 # =========================
@@ -92,11 +170,8 @@ def tao_price():
                     if key in item:
                         return safe_float(item[key])
 
-            print(f"PRICE DEBUG {url}: unexpected payload -> {data}")
-
         except Exception as e:
             last_err = e
-            print(f"PRICE DEBUG {url}: {e}")
 
     if os.path.exists(SNAPSHOT_FILE):
         try:
@@ -105,14 +180,14 @@ def tao_price():
             if "tao" in snap:
                 print("Using snapshot fallback price")
                 return safe_float(snap["tao"])
-        except Exception as e:
-            print(f"SNAPSHOT DEBUG: {e}")
+        except Exception:
+            pass
 
     raise Exception(f"❌ Failed to fetch TAO price. Last error: {last_err}")
 
 
 # =========================
-# TAOSTATS DELEGATIONS
+# TAOSTATS DELEGATION EVENTS
 # =========================
 
 def get_delegations():
@@ -133,44 +208,111 @@ def get_delegations():
 
 
 def build_positions(delegations, tao_usd):
+    """
+    Rebuild current positions from DELEGATE / UNDELEGATE event history
+    using average-cost accounting.
+    """
+    events = sorted(delegations, key=event_sort_key)
+
+    book = defaultdict(lambda: {
+        "netuid": 0,
+        "validator": "unknown",
+        "delegate_ss58": "",
+        "tao_staked": 0.0,
+        "cost_basis_usd": 0.0,
+        "realized_pnl_usd": 0.0,
+    })
+
+    for d in events:
+        action = (d.get("action") or "").upper().strip()
+        netuid = int(d.get("netuid", 0))
+        validator = d.get("delegate_name") or d.get("validator_name") or d.get("validator") or "unknown"
+        delegate_ss58 = (d.get("delegate") or {}).get("ss58", "")
+
+        key = (netuid, delegate_ss58 or validator)
+
+        tao_amt = normalize_tao_amount(d.get("amount", 0))
+        usd_amt = normalize_usd_amount(d.get("usd", 0))
+
+        pos = book[key]
+        pos["netuid"] = netuid
+        pos["validator"] = validator
+        pos["delegate_ss58"] = delegate_ss58
+
+        if tao_amt <= 0:
+            continue
+
+        # Buy / add
+        if action == "DELEGATE":
+            pos["tao_staked"] += tao_amt
+            pos["cost_basis_usd"] += usd_amt
+
+        # Reduce / sell
+        elif action == "UNDELEGATE":
+            current_qty = pos["tao_staked"]
+            current_cost = pos["cost_basis_usd"]
+
+            if current_qty <= 0:
+                continue
+
+            sell_qty = min(tao_amt, current_qty)
+            avg_cost_per_tao = current_cost / current_qty if current_qty > 0 else 0.0
+            removed_cost = avg_cost_per_tao * sell_qty
+
+            proceeds = usd_amt
+            pos["realized_pnl_usd"] += (proceeds - removed_cost)
+
+            pos["tao_staked"] = max(0.0, current_qty - sell_qty)
+            pos["cost_basis_usd"] = max(0.0, current_cost - removed_cost)
+
     positions = []
 
-    for d in delegations:
-        tao = safe_float(
-            d.get("tao_staked", d.get("amount", d.get("stake", 0)))
-        )
+    for _, p in book.items():
+        tao = p["tao_staked"]
         if tao <= 0:
             continue
 
-        validator = (
-            d.get("validator_name")
-            or d.get("validator")
-            or d.get("display_name")
-            or d.get("hotkey_name")
-            or "unknown"
-        )
-
-        netuid = int(d.get("netuid", d.get("subnet_id", 0)))
-
-        cost_basis = safe_float(
-            d.get("cost_basis_usd", d.get("cost_basis", d.get("total_cost", 0)))
-        )
-
         current_value = tao * tao_usd
+        cost_basis = p["cost_basis_usd"]
         pnl_usd = current_value - cost_basis
         pnl_pct = (pnl_usd / cost_basis * 100.0) if cost_basis > 0 else 0.0
 
         positions.append({
-            "netuid": netuid,
-            "validator": validator,
+            "netuid": p["netuid"],
+            "validator": p["validator"],
             "tao_staked": tao,
             "cost_basis_usd": cost_basis,
             "current_value_usd": current_value,
             "pnl_usd": pnl_usd,
             "pnl_pct": pnl_pct,
+            "realized_pnl_usd": p["realized_pnl_usd"],
         })
 
     positions.sort(key=lambda x: x["current_value_usd"], reverse=True)
+
+    debug = []
+    for p in positions:
+        debug.append({
+            "netuid": p["netuid"],
+            "validator": p["validator"],
+            "tao_staked": round(p["tao_staked"], 6),
+            "cost_basis_usd": round(p["cost_basis_usd"], 2),
+            "current_value_usd": round(p["current_value_usd"], 2),
+            "pnl_usd": round(p["pnl_usd"], 2),
+            "realized_pnl_usd": round(p["realized_pnl_usd"], 2),
+        })
+
+    with open("delegations_raw.json", "w") as f:
+        json.dump(events, f, indent=2)
+    print("Wrote delegations_raw.json")
+
+    with open("cost_basis_debug.json", "w") as f:
+        json.dump(debug, f, indent=2)
+    print("Wrote cost_basis_debug.json")
+
+    found_cost = sum(1 for p in positions if p["cost_basis_usd"] > 0)
+    print(f"COST BASIS FOUND: {found_cost}/{len(positions)} positions")
+
     return positions
 
 
@@ -185,20 +327,75 @@ def get_bt_data(netuid):
 
     try:
         sub = bt.Subtensor(network="finney")
-        mg = bt.metagraph(netuid=netuid, subtensor=sub, lite=True)
-
-        stake = float(sum(mg.total_stake)) / 1e9
-
-        emissions = getattr(mg, "emissions", None)
-        if emissions is None:
-            raise Exception("missing emissions")
 
         try:
-            em = float(emissions.sum())
+            meta_info = sub.get_metagraph_info(netuid=netuid)
         except Exception:
-            em = float(emissions)
+            meta_info = None
 
-        print(f"DEBUG SN{netuid}: stake={stake:.4f}, em={em:.6f}")
+        if meta_info is not None:
+            stake, stake_src = first_nonzero_attr(
+                meta_info,
+                [
+                    "total_stake",
+                    "stake",
+                    "alpha_stake",
+                    "tao_stake",
+                    "alpha_in",
+                    "tao_in",
+                ],
+            )
+
+            em, em_src = first_nonzero_attr(
+                meta_info,
+                [
+                    "emission",
+                    "subnet_emission",
+                    "emissions",
+                    "alpha_out_emission",
+                    "alpha_in_emission",
+                    "tao_in_emission",
+                ],
+            )
+
+            if stake is not None and em is not None:
+                print(
+                    f"DEBUG SN{netuid}: "
+                    f"stake={stake:.4f}, em={em:.6f}, "
+                    f"src=meta_info.{stake_src}/meta_info.{em_src}"
+                )
+                return stake, em
+
+        try:
+            mg = bt.metagraph(netuid=netuid, subtensor=sub, lite=False)
+        except TypeError:
+            mg = bt.metagraph(netuid=netuid, subtensor=sub)
+
+        total_stake_obj = getattr(mg, "total_stake", None)
+        if total_stake_obj is None:
+            total_stake_obj = getattr(mg, "stake", None)
+
+        emission_obj = getattr(mg, "emission", None)
+        if emission_obj is None:
+            emission_obj = getattr(mg, "emissions", None)
+
+        stake = extract_amount(total_stake_obj)
+        em = extract_amount(emission_obj)
+
+        if stake is None or em is None:
+            stake_attrs = [a for a in dir(mg) if "stake" in a.lower()]
+            em_attrs = [a for a in dir(mg) if "em" in a.lower()]
+            raise Exception(
+                f"unable to parse metagraph fields; "
+                f"stake_attrs={stake_attrs[:10]} em_attrs={em_attrs[:10]}"
+            )
+
+        print(
+            f"DEBUG SN{netuid}: "
+            f"stake={stake:.4f}, em={em:.6f}, "
+            f"src=metagraph.total_stake/metagraph.emission, "
+            f"stake_type={type(total_stake_obj)}, em_type={type(emission_obj)}"
+        )
         return stake, em
 
     except Exception as e:
@@ -230,9 +427,15 @@ def append_history(positions):
     ensure_history_file()
 
     rows = []
+    bt_cache = {}
+
+    unique_netuids = sorted({int(p["netuid"]) for p in positions})
+
+    for netuid in unique_netuids:
+        bt_cache[netuid] = get_bt_data(netuid)
 
     for p in positions:
-        stake, em = get_bt_data(p["netuid"])
+        stake, em = bt_cache.get(p["netuid"], (None, None))
 
         if stake is None or em is None:
             print(f"SKIP SN{p['netuid']}: failed BT fetch")
@@ -420,17 +623,35 @@ def build_email_body(tao_usd, positions, df):
 
 
 def send_email(subject, body):
+    if not ZOHO_EMAIL or not ZOHO_PASS:
+        print("EMAIL SKIPPED: missing ZOHO_EMAIL or ZOHO_PASS")
+        return False
+
     msg = MIMEText(body, "plain")
     msg["Subject"] = subject
     msg["From"] = ZOHO_EMAIL
     msg["To"] = RECIPIENT
 
-    with smtplib.SMTP("smtp.zoho.com", 587) as server:
-        server.starttls()
-        server.login(ZOHO_EMAIL, ZOHO_PASS)
-        server.sendmail(ZOHO_EMAIL, [RECIPIENT], msg.as_string())
+    try:
+        with smtplib.SMTP("smtp.zoho.com", 587, timeout=30) as server:
+            server.ehlo()
+            server.starttls()
+            server.ehlo()
+            server.login(ZOHO_EMAIL, ZOHO_PASS)
+            server.sendmail(ZOHO_EMAIL, [RECIPIENT], msg.as_string())
 
-    print("✓ Email sent")
+        print("✓ Email sent")
+        return True
+
+    except smtplib.SMTPAuthenticationError as e:
+        print(f"EMAIL AUTH FAILED: {e}")
+        print("TIP: verify ZOHO_EMAIL is the full Zoho mailbox address and ZOHO_PASS is the Zoho SMTP/app password.")
+        return False
+
+    except Exception as e:
+        print(f"EMAIL SEND FAILED: {e}")
+        traceback.print_exc()
+        return False
 
 
 # =========================
@@ -452,7 +673,12 @@ def main():
 
     subject = f"TAO Portfolio — {datetime.now().strftime('%Y-%m-%d')}"
     body = build_email_body(tao, positions, df)
-    send_email(subject, body)
+
+    email_ok = send_email(subject, body)
+    if not email_ok:
+        with open("last_tao_report.txt", "w") as f:
+            f.write(body)
+        print("Saved report locally to last_tao_report.txt")
 
     save_snapshot(tao, positions)
 

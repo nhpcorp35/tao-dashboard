@@ -1,0 +1,730 @@
+[
+  {
+    "id": "finney-0-0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7687706-77",
+    "block_number": 7687706,
+    "timestamp": "2026-03-06T18:06:12Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5HmkM6X1D3W3CuCSPuHhrbYyZNBy2aGAiZy9NczoJmtY25H7",
+      "hex": "0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754"
+    },
+    "delegate_name": "Crucible Labs",
+    "amount": "200000000",
+    "alpha": "200000000",
+    "usd": "34.92",
+    "alpha_price_in_tao": "1",
+    "alpha_price_in_usd": "174.61",
+    "slippage": "0",
+    "fee": "0",
+    "netuid": 0,
+    "extrinsic_id": "7687706-0018",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-0-0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7730619-118",
+    "block_number": 7730619,
+    "timestamp": "2026-03-12T17:12:36Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5HmkM6X1D3W3CuCSPuHhrbYyZNBy2aGAiZy9NczoJmtY25H7",
+      "hex": "0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754"
+    },
+    "delegate_name": "Crucible Labs",
+    "amount": "168400000",
+    "alpha": "168400000",
+    "usd": "36.48",
+    "alpha_price_in_tao": "1",
+    "alpha_price_in_usd": "216.62",
+    "slippage": "0",
+    "fee": "0",
+    "netuid": 0,
+    "extrinsic_id": "7730619-0031",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-62-0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7773704-86",
+    "block_number": 7773704,
+    "timestamp": "2026-03-18T16:56:48Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5HmkM6X1D3W3CuCSPuHhrbYyZNBy2aGAiZy9NczoJmtY25H7",
+      "hex": "0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754"
+    },
+    "delegate_name": "Crucible Labs",
+    "amount": "500000000",
+    "alpha": "14037485337",
+    "usd": "133.55",
+    "alpha_price_in_tao": "0.0356189152114089934",
+    "alpha_price_in_usd": "9.51",
+    "slippage": "0.0512898698505905",
+    "fee": "251773",
+    "netuid": 62,
+    "extrinsic_id": "7773704-0017",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-64-0x5063a3000daa02d892617cda479bc20bb8acf430a8cb167e653c5395b9d4f834-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7781685-203",
+    "block_number": 7781685,
+    "timestamp": "2026-03-19T19:33:00.001Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5Dt7HZ7Zpw4DppPxFM7Ke3Cm7sDAWhsZXmM5ZAmE7dSVJbcQ",
+      "hex": "0x5063a3000daa02d892617cda479bc20bb8acf430a8cb167e653c5395b9d4f834"
+    },
+    "delegate_name": "Chutes / SN64 Primary Validator",
+    "amount": "70000000",
+    "alpha": "794234980",
+    "usd": "17.68",
+    "alpha_price_in_tao": "0.08813512595478985325",
+    "alpha_price_in_usd": "22.26",
+    "slippage": "0.05040004808062824",
+    "fee": "35248",
+    "netuid": 64,
+    "extrinsic_id": "7781685-0039",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-64-0x5063a3000daa02d892617cda479bc20bb8acf430a8cb167e653c5395b9d4f834-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7781699-66",
+    "block_number": 7781699,
+    "timestamp": "2026-03-19T19:35:48Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5Dt7HZ7Zpw4DppPxFM7Ke3Cm7sDAWhsZXmM5ZAmE7dSVJbcQ",
+      "hex": "0x5063a3000daa02d892617cda479bc20bb8acf430a8cb167e653c5395b9d4f834"
+    },
+    "delegate_name": "Chutes / SN64 Primary Validator",
+    "amount": "500000000",
+    "alpha": "5672815214",
+    "usd": "126.30",
+    "alpha_price_in_tao": "0.08813965925878297082",
+    "alpha_price_in_usd": "22.26",
+    "slippage": "0.050596449071728758",
+    "fee": "251773",
+    "netuid": 64,
+    "extrinsic_id": "7781699-0009",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-4-0xa8eb4153119d95c0fc6c143573d82fa07d68748261d64a42a70f896a286e9810-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7781709-99",
+    "block_number": 7781709,
+    "timestamp": "2026-03-19T19:37:48Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5FtBncJvGhxjBs4aFn2pid6aur9tBUuo9QR7sHe5DkoRizzo",
+      "hex": "0xa8eb4153119d95c0fc6c143573d82fa07d68748261d64a42a70f896a286e9810"
+    },
+    "delegate_name": "Rizzo (Insured)",
+    "amount": "500000000",
+    "alpha": "10315848857",
+    "usd": "126.30",
+    "alpha_price_in_tao": "0.04846910874045195406",
+    "alpha_price_in_usd": "12.24",
+    "slippage": "0.050832378688208447",
+    "fee": "251773",
+    "netuid": 4,
+    "extrinsic_id": "7781709-0017",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-3-0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7801225-84",
+    "block_number": 7801225,
+    "timestamp": "2026-03-22T12:45:12Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5HmkM6X1D3W3CuCSPuHhrbYyZNBy2aGAiZy9NczoJmtY25H7",
+      "hex": "0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754"
+    },
+    "delegate_name": "Crucible Labs",
+    "amount": "700000000",
+    "alpha": "8216152371",
+    "usd": "190.25",
+    "alpha_price_in_tao": "0.08519803046383887468",
+    "alpha_price_in_usd": "23.16",
+    "slippage": "0.051111028104553344",
+    "fee": "352483",
+    "netuid": 3,
+    "extrinsic_id": "7801225-0016",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-64-0x5063a3000daa02d892617cda479bc20bb8acf430a8cb167e653c5395b9d4f834-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7802599-103",
+    "block_number": 7802599,
+    "timestamp": "2026-03-22T17:20:00Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5Dt7HZ7Zpw4DppPxFM7Ke3Cm7sDAWhsZXmM5ZAmE7dSVJbcQ",
+      "hex": "0x5063a3000daa02d892617cda479bc20bb8acf430a8cb167e653c5395b9d4f834"
+    },
+    "delegate_name": "Chutes / SN64 Primary Validator",
+    "amount": "500000000",
+    "alpha": "5572396504",
+    "usd": "135.23",
+    "alpha_price_in_tao": "0.08972800116450579124",
+    "alpha_price_in_usd": "24.27",
+    "slippage": "0.05059362174109966",
+    "fee": "251773",
+    "netuid": 64,
+    "extrinsic_id": "7802599-0016",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-3-0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7832598-127",
+    "block_number": 7832598,
+    "timestamp": "2026-03-26T21:20:12Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5HmkM6X1D3W3CuCSPuHhrbYyZNBy2aGAiZy9NczoJmtY25H7",
+      "hex": "0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754"
+    },
+    "delegate_name": "Crucible Labs",
+    "amount": "300000000",
+    "alpha": "3577882060",
+    "usd": "101.31",
+    "alpha_price_in_tao": "0.08384848772796049068",
+    "alpha_price_in_usd": "28.32",
+    "slippage": "0.05073259735941755",
+    "fee": "151064",
+    "netuid": 3,
+    "extrinsic_id": "7832598-0021",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-4-0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7832638-89",
+    "block_number": 7832638,
+    "timestamp": "2026-03-26T21:28:12Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5HmkM6X1D3W3CuCSPuHhrbYyZNBy2aGAiZy9NczoJmtY25H7",
+      "hex": "0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754"
+    },
+    "delegate_name": "Crucible Labs",
+    "amount": "300000000",
+    "alpha": "4914014078",
+    "usd": "101.31",
+    "alpha_price_in_tao": "0.06104988614971566632",
+    "alpha_price_in_usd": "20.62",
+    "slippage": "0.050678206533852013",
+    "fee": "151064",
+    "netuid": 4,
+    "extrinsic_id": "7832638-0019",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-64-0x5063a3000daa02d892617cda479bc20bb8acf430a8cb167e653c5395b9d4f834-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7837599-102",
+    "block_number": 7837599,
+    "timestamp": "2026-03-27T14:00:24Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5Dt7HZ7Zpw4DppPxFM7Ke3Cm7sDAWhsZXmM5ZAmE7dSVJbcQ",
+      "hex": "0x5063a3000daa02d892617cda479bc20bb8acf430a8cb167e653c5395b9d4f834"
+    },
+    "delegate_name": "Chutes / SN64 Primary Validator",
+    "amount": "300000000",
+    "alpha": "3425114060",
+    "usd": "97.22",
+    "alpha_price_in_tao": "0.08758832399292419476",
+    "alpha_price_in_usd": "28.39",
+    "slippage": "0.050304733018320773",
+    "fee": "151064",
+    "netuid": 64,
+    "extrinsic_id": "7837599-0019",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-62-0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7837617-286",
+    "block_number": 7837617,
+    "timestamp": "2026-03-27T14:04:00.001Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5HmkM6X1D3W3CuCSPuHhrbYyZNBy2aGAiZy9NczoJmtY25H7",
+      "hex": "0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754"
+    },
+    "delegate_name": "Crucible Labs",
+    "amount": "700000000",
+    "alpha": "22721608645",
+    "usd": "226.86",
+    "alpha_price_in_tao": "0.03080767787777378119",
+    "alpha_price_in_usd": "9.98",
+    "slippage": "0.051750093041975644",
+    "fee": "352483",
+    "netuid": 62,
+    "extrinsic_id": "7837617-0055",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-3-0xbc0e6b701243978c1fe73d721c7b157943a713fca9f3c88cad7a9f7799bc6b26-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7873680-91",
+    "block_number": 7873680,
+    "timestamp": "2026-04-01T14:39:00.001Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5GKH9FPPnWSUoeeTJp19wVtd84XqFW4pyK2ijV2GsFbhTrP1",
+      "hex": "0xbc0e6b701243978c1fe73d721c7b157943a713fca9f3c88cad7a9f7799bc6b26"
+    },
+    "delegate_name": "Taostats",
+    "amount": "300000000",
+    "alpha": "3962044492",
+    "usd": "96.63",
+    "alpha_price_in_tao": "0.07571848337537548278",
+    "alpha_price_in_usd": "24.39",
+    "slippage": "0.050690530561126437",
+    "fee": "151064",
+    "netuid": 3,
+    "extrinsic_id": "7873680-0015",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-4-0xb4c087119097fbe3985298eef52f35ef6271c48322a8c2d430902a9cc38d9473-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7873731-89",
+    "block_number": 7873731,
+    "timestamp": "2026-04-01T14:49:12Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5G9hfkx9wGB1CLMT9WXkpHSAiYzjZb5o1Boyq4KAdDhjwrc5",
+      "hex": "0xb4c087119097fbe3985298eef52f35ef6271c48322a8c2d430902a9cc38d9473"
+    },
+    "delegate_name": "1T1B.AI",
+    "amount": "300000000",
+    "alpha": "4721252680",
+    "usd": "97.38",
+    "alpha_price_in_tao": "0.0635424579732512855",
+    "alpha_price_in_usd": "20.63",
+    "slippage": "0.050678132276557403",
+    "fee": "151064",
+    "netuid": 4,
+    "extrinsic_id": "7873731-0015",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-0-0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7910283-28",
+    "block_number": 7910283,
+    "timestamp": "2026-04-06T16:58:48.001Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5HmkM6X1D3W3CuCSPuHhrbYyZNBy2aGAiZy9NczoJmtY25H7",
+      "hex": "0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754"
+    },
+    "delegate_name": "Crucible Labs",
+    "amount": "1000000000",
+    "alpha": "1000000000",
+    "usd": "322.68",
+    "alpha_price_in_tao": "1",
+    "alpha_price_in_usd": "322.68",
+    "slippage": "0",
+    "fee": "0",
+    "netuid": 0,
+    "extrinsic_id": "7910283-0008",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-3-0xb4c087119097fbe3985298eef52f35ef6271c48322a8c2d430902a9cc38d9473-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7931987-31",
+    "block_number": 7931987,
+    "timestamp": "2026-04-09T17:19:48Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5G9hfkx9wGB1CLMT9WXkpHSAiYzjZb5o1Boyq4KAdDhjwrc5",
+      "hex": "0xb4c087119097fbe3985298eef52f35ef6271c48322a8c2d430902a9cc38d9473"
+    },
+    "delegate_name": "1T1B.AI",
+    "amount": "2000000000",
+    "alpha": "28932683459",
+    "usd": "669.99",
+    "alpha_price_in_tao": "0.06912597660822457208",
+    "alpha_price_in_usd": "23.16",
+    "slippage": "0.05204695871685996",
+    "fee": "1007095",
+    "netuid": 3,
+    "extrinsic_id": "7931987-0009",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-4-0xe824c935940357af73c961bdd7387e1ab821ec2939ecd19daafe6081ae9ae674-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7932003-103",
+    "block_number": 7932003,
+    "timestamp": "2026-04-09T17:23:00.001Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5HK5tp6t2S59DywmHRWPBVJeJ86T61KjurYqeooqj8sREpeN",
+      "hex": "0xe824c935940357af73c961bdd7387e1ab821ec2939ecd19daafe6081ae9ae674"
+    },
+    "delegate_name": "TAO.com",
+    "amount": "1500000000",
+    "alpha": "26155242315",
+    "usd": "502.49",
+    "alpha_price_in_tao": "0.0573498796889276688",
+    "alpha_price_in_usd": "19.21",
+    "slippage": "0.059553491641811818",
+    "fee": "755321",
+    "netuid": 4,
+    "extrinsic_id": "7932003-0016",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-3-0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7938240-81",
+    "block_number": 7938240,
+    "timestamp": "2026-04-10T14:11:00Z",
+    "action": "UNDELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5HmkM6X1D3W3CuCSPuHhrbYyZNBy2aGAiZy9NczoJmtY25H7",
+      "hex": "0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754"
+    },
+    "delegate_name": "Crucible Labs",
+    "amount": "377527154",
+    "alpha": "11979146028",
+    "usd": "100.02",
+    "alpha_price_in_tao": "0.03151536454414778756",
+    "alpha_price_in_usd": "8.35",
+    "slippage": "0.050830392385372088",
+    "fee": "6032071",
+    "netuid": 3,
+    "extrinsic_id": "7938240-0016",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-64-0x5063a3000daa02d892617cda479bc20bb8acf430a8cb167e653c5395b9d4f834-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7938252-103",
+    "block_number": 7938252,
+    "timestamp": "2026-04-10T14:13:24Z",
+    "action": "UNDELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5Dt7HZ7Zpw4DppPxFM7Ke3Cm7sDAWhsZXmM5ZAmE7dSVJbcQ",
+      "hex": "0x5063a3000daa02d892617cda479bc20bb8acf430a8cb167e653c5395b9d4f834"
+    },
+    "delegate_name": "Chutes / SN64 Primary Validator",
+    "amount": "478140020",
+    "alpha": "5802818627",
+    "usd": "126.67",
+    "alpha_price_in_tao": "0.08239789156518815317",
+    "alpha_price_in_usd": "21.83",
+    "slippage": "0.050603093897948766",
+    "fee": "2921996",
+    "netuid": 64,
+    "extrinsic_id": "7938252-0017",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-0-0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7938263-267",
+    "block_number": 7938263,
+    "timestamp": "2026-04-10T14:15:36Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5HmkM6X1D3W3CuCSPuHhrbYyZNBy2aGAiZy9NczoJmtY25H7",
+      "hex": "0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754"
+    },
+    "delegate_name": "Crucible Labs",
+    "amount": "1189200000",
+    "alpha": "1189200000",
+    "usd": "313.88",
+    "alpha_price_in_tao": "1",
+    "alpha_price_in_usd": "263.95",
+    "slippage": "0",
+    "fee": "0",
+    "netuid": 0,
+    "extrinsic_id": "7938263-0049",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-3-0xbc0e6b701243978c1fe73d721c7b157943a713fca9f3c88cad7a9f7799bc6b26-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7940140-133",
+    "block_number": 7940140,
+    "timestamp": "2026-04-10T20:31:00Z",
+    "action": "UNDELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5GKH9FPPnWSUoeeTJp19wVtd84XqFW4pyK2ijV2GsFbhTrP1",
+      "hex": "0xbc0e6b701243978c1fe73d721c7b157943a713fca9f3c88cad7a9f7799bc6b26"
+    },
+    "delegate_name": "Taostats",
+    "amount": "134739245",
+    "alpha": "3995935018",
+    "usd": "35.71",
+    "alpha_price_in_tao": "0.03371907811139485352",
+    "alpha_price_in_usd": "8.94",
+    "slippage": "0.050528021804942807",
+    "fee": "2012143",
+    "netuid": 3,
+    "extrinsic_id": "7940140-0016",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-3-0xb4c087119097fbe3985298eef52f35ef6271c48322a8c2d430902a9cc38d9473-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7940148-120",
+    "block_number": 7940148,
+    "timestamp": "2026-04-10T20:32:36Z",
+    "action": "UNDELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5G9hfkx9wGB1CLMT9WXkpHSAiYzjZb5o1Boyq4KAdDhjwrc5",
+      "hex": "0xb4c087119097fbe3985298eef52f35ef6271c48322a8c2d430902a9cc38d9473"
+    },
+    "delegate_name": "1T1B.AI",
+    "amount": "977647342",
+    "alpha": "28974512930",
+    "usd": "259.10",
+    "alpha_price_in_tao": "0.03374163163197649652",
+    "alpha_price_in_usd": "8.94",
+    "slippage": "0.051529479583046351",
+    "fee": "14590049",
+    "netuid": 3,
+    "extrinsic_id": "7940148-0021",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-9-0x40c47b6a294686fe9612b5d78dd369f4c77fa3bbf96a4286ede97410ba2e3209-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7940173-187",
+    "block_number": 7940173,
+    "timestamp": "2026-04-10T20:37:36Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5DXdHixxtCvoa6GHKs2Jgrdzc61882Ftx1zN2sYFQuwgL1S1",
+      "hex": "0x40c47b6a294686fe9612b5d78dd369f4c77fa3bbf96a4286ede97410ba2e3209"
+    },
+    "delegate_name": "Yuma, a DCG Company",
+    "amount": "500000000",
+    "alpha": "22474009098",
+    "usd": "132.51",
+    "alpha_price_in_tao": "0.0222479219359440343",
+    "alpha_price_in_usd": "5.90",
+    "slippage": "0.051419977164146895",
+    "fee": "251773",
+    "netuid": 9,
+    "extrinsic_id": "7940173-0038",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-120-0x56a9aee6291bd03ab6d36d4d13e2bebae7cd403518066c72fba1b417d6ddd748-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7940184-87",
+    "block_number": 7940184,
+    "timestamp": "2026-04-10T20:39:48.001Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5E2LP6EnZ54m3wS8s1yPvD5c3xo71kQroBw7aUVK32TKeZ5u",
+      "hex": "0x56a9aee6291bd03ab6d36d4d13e2bebae7cd403518066c72fba1b417d6ddd748"
+    },
+    "delegate_name": "tao.bot",
+    "amount": "1000000000",
+    "alpha": "12561188079",
+    "usd": "265.02",
+    "alpha_price_in_tao": "0.07961030387498268427",
+    "alpha_price_in_usd": "21.10",
+    "slippage": "0.051471249087063856",
+    "fee": "503547",
+    "netuid": 120,
+    "extrinsic_id": "7940184-0013",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-0-0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7940189-120",
+    "block_number": 7940189,
+    "timestamp": "2026-04-10T20:40:48Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5HmkM6X1D3W3CuCSPuHhrbYyZNBy2aGAiZy9NczoJmtY25H7",
+      "hex": "0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754"
+    },
+    "delegate_name": "Crucible Labs",
+    "amount": "2605900000",
+    "alpha": "2605900000",
+    "usd": "690.62",
+    "alpha_price_in_tao": "1",
+    "alpha_price_in_usd": "265.02",
+    "slippage": "0",
+    "fee": "0",
+    "netuid": 0,
+    "extrinsic_id": "7940189-0018",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-0-0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7941107-81",
+    "block_number": 7941107,
+    "timestamp": "2026-04-10T23:44:24.001Z",
+    "action": "UNDELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5HmkM6X1D3W3CuCSPuHhrbYyZNBy2aGAiZy9NczoJmtY25H7",
+      "hex": "0xfc7a9c8151fe6ca626afe6e5d0a8008ced9a02d6a559d647357882c640ada754"
+    },
+    "delegate_name": "Crucible Labs",
+    "amount": "200000000",
+    "alpha": "200000000",
+    "usd": "51.70",
+    "alpha_price_in_tao": "1",
+    "alpha_price_in_usd": "258.48",
+    "slippage": "0",
+    "fee": "0",
+    "netuid": 0,
+    "extrinsic_id": "7941107-0017",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-0-0xb4c087119097fbe3985298eef52f35ef6271c48322a8c2d430902a9cc38d9473-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7952394-108",
+    "block_number": 7952394,
+    "timestamp": "2026-04-12T13:21:48Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5G9hfkx9wGB1CLMT9WXkpHSAiYzjZb5o1Boyq4KAdDhjwrc5",
+      "hex": "0xb4c087119097fbe3985298eef52f35ef6271c48322a8c2d430902a9cc38d9473"
+    },
+    "delegate_name": "1T1B.AI",
+    "amount": "1097700000",
+    "alpha": "1097700000",
+    "usd": "288.54",
+    "alpha_price_in_tao": "1",
+    "alpha_price_in_usd": "262.86",
+    "slippage": "0",
+    "fee": "0",
+    "netuid": 0,
+    "extrinsic_id": "7952394-0016",
+    "is_transfer": null,
+    "transfer_address": null
+  },
+  {
+    "id": "finney-9-0xa4b123184a99b2e3063b756a5d9cf8cb0491caa8f3025a4220e91a6b7d1a6b5f-0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419-7967171-257",
+    "block_number": 7967171,
+    "timestamp": "2026-04-14T14:38:12.001Z",
+    "action": "DELEGATE",
+    "nominator": {
+      "ss58": "5Cexeg7deNSTzsqMKuBmvc9JHGHymuL4SdjAA9Jw4eeHUphb",
+      "hex": "0x1a202463ce3fa8f485a2b1e330980739b63617c7a53d710a29572e873d5c3419"
+    },
+    "delegate": {
+      "ss58": "5FneL9bgoRFbRMwGamqYstCevwJgbGm51dpvuHW57gN5wvjS",
+      "hex": "0xa4b123184a99b2e3063b756a5d9cf8cb0491caa8f3025a4220e91a6b7d1a6b5f"
+    },
+    "delegate_name": "TAO.com",
+    "amount": "998400000",
+    "alpha": "40460846460",
+    "usd": "250.94",
+    "alpha_price_in_tao": "0.02467570719231067713",
+    "alpha_price_in_usd": "6.20",
+    "slippage": "0.052292585303217756",
+    "fee": "502742",
+    "netuid": 9,
+    "extrinsic_id": "7967171-0037",
+    "is_transfer": null,
+    "transfer_address": null
+  }
+]

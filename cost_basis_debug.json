@@ -1,0 +1,128 @@
+[
+  {
+    "netuid": 0,
+    "validator": "Crucible Labs",
+    "tao_staked": 4.9635,
+    "cost_basis_usd": 1344.41,
+    "current_value_usd": 1239.98,
+    "pnl_usd": -104.43,
+    "realized_pnl_usd": -2.47
+  },
+  {
+    "netuid": 4,
+    "validator": "TAO.com",
+    "tao_staked": 1.5,
+    "cost_basis_usd": 502.49,
+    "current_value_usd": 374.73,
+    "pnl_usd": -127.76,
+    "realized_pnl_usd": 0.0
+  },
+  {
+    "netuid": 62,
+    "validator": "Crucible Labs",
+    "tao_staked": 1.2,
+    "cost_basis_usd": 360.41,
+    "current_value_usd": 299.78,
+    "pnl_usd": -60.63,
+    "realized_pnl_usd": 0.0
+  },
+  {
+    "netuid": 0,
+    "validator": "1T1B.AI",
+    "tao_staked": 1.0977,
+    "cost_basis_usd": 288.54,
+    "current_value_usd": 274.23,
+    "pnl_usd": -14.31,
+    "realized_pnl_usd": 0.0
+  },
+  {
+    "netuid": 3,
+    "validator": "1T1B.AI",
+    "tao_staked": 1.022353,
+    "cost_basis_usd": 342.48,
+    "current_value_usd": 255.4,
+    "pnl_usd": -87.08,
+    "realized_pnl_usd": -68.41
+  },
+  {
+    "netuid": 120,
+    "validator": "tao.bot",
+    "tao_staked": 1.0,
+    "cost_basis_usd": 265.02,
+    "current_value_usd": 249.82,
+    "pnl_usd": -15.2,
+    "realized_pnl_usd": 0.0
+  },
+  {
+    "netuid": 9,
+    "validator": "TAO.com",
+    "tao_staked": 0.9984,
+    "cost_basis_usd": 250.94,
+    "current_value_usd": 249.42,
+    "pnl_usd": -1.52,
+    "realized_pnl_usd": 0.0
+  },
+  {
+    "netuid": 64,
+    "validator": "Chutes / SN64 Primary Validator",
+    "tao_staked": 0.89186,
+    "cost_basis_usd": 245.05,
+    "current_value_usd": 222.8,
+    "pnl_usd": -22.25,
+    "realized_pnl_usd": -4.71
+  },
+  {
+    "netuid": 3,
+    "validator": "Crucible Labs",
+    "tao_staked": 0.622473,
+    "cost_basis_usd": 181.49,
+    "current_value_usd": 155.51,
+    "pnl_usd": -25.98,
+    "realized_pnl_usd": -10.05
+  },
+  {
+    "netuid": 4,
+    "validator": "Rizzo (Insured)",
+    "tao_staked": 0.5,
+    "cost_basis_usd": 126.3,
+    "current_value_usd": 124.91,
+    "pnl_usd": -1.39,
+    "realized_pnl_usd": 0.0
+  },
+  {
+    "netuid": 9,
+    "validator": "Yuma, a DCG Company",
+    "tao_staked": 0.5,
+    "cost_basis_usd": 132.51,
+    "current_value_usd": 124.91,
+    "pnl_usd": -7.6,
+    "realized_pnl_usd": 0.0
+  },
+  {
+    "netuid": 4,
+    "validator": "Crucible Labs",
+    "tao_staked": 0.3,
+    "cost_basis_usd": 101.31,
+    "current_value_usd": 74.95,
+    "pnl_usd": -26.36,
+    "realized_pnl_usd": 0.0
+  },
+  {
+    "netuid": 4,
+    "validator": "1T1B.AI",
+    "tao_staked": 0.3,
+    "cost_basis_usd": 97.38,
+    "current_value_usd": 74.95,
+    "pnl_usd": -22.43,
+    "realized_pnl_usd": 0.0
+  },
+  {
+    "netuid": 3,
+    "validator": "Taostats",
+    "tao_staked": 0.165261,
+    "cost_basis_usd": 53.23,
+    "current_value_usd": 41.29,
+    "pnl_usd": -11.95,
+    "realized_pnl_usd": -7.69
+  }
+]

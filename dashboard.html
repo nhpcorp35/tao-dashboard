@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>TAO Decision Dashboard</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0f1115;
+      color: #e6e6e6;
+      margin: 20px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: #1a1d24;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+      border: 1px solid #2a2f3a;
+    }
+
+    .buy { border-left: 5px solid #00c853; }
+    .hold { border-left: 5px solid #2979ff; }
+    .watch { border-left: 5px solid #ffab00; }
+    .sell { border-left: 5px solid #ff3d00; }
+
+    .title {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .row {
+      font-size: 13px;
+      margin-top: 6px;
+      color: #aaa;
+    }
+
+    .reason {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+<h1>TAO Decision Dashboard</h1>
+
+<div id="app"></div>
+
+<script>
+fetch("tao_decisions.json")
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById("app");
+
+    data.forEach(d => {
+      const div = document.createElement("div");
+
+      let cls = "watch";
+      if (d.action.includes("Buy")) cls = "buy";
+      if (d.action === "Hold") cls = "hold";
+      if (d.action.includes("Trim")) cls = "sell";
+
+      div.className = `card ${cls}`;
+
+      div.innerHTML = `
+        <div class="title">
+          SN${d.netuid} — ${d.name} — ${d.action}
+        </div>
+
+        <div class="row">
+          Value: $${d.current_value_usd.toLocaleString()} |
+          APR: ${d.subnet_apr_signal_pct}% |
+          Daily Yield: ${d.your_daily_yield_tao.toFixed(4)} TAO
+        </div>
+
+        <div class="row">
+          24h Flow: ${d.flow_24h.toLocaleString()} |
+          7d Flow: ${d.flow_7d.toLocaleString()}
+        </div>
+
+        <div class="row">
+          PnL: ${d.pnl_pct}% (${d.pnl_usd.toFixed(2)})
+        </div>
+
+        <div class="reason">
+          ${d.reason}
+        </div>
+      `;
+
+      container.appendChild(div);
+    });
+  });
+</script>
+
+</body>
+</html>
